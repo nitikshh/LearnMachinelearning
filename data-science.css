@@ -1,0 +1,164 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+section h2 {
+    margin-bottom: 10px;
+    color:white;
+    text-align:center;
+    text-shadow: 2px 2px 8px black;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+pre{
+    padding:0px;
+
+}
+.container h4{
+    padding:5px;
+    width:100%;
+}
+.p{
+    background:#fff;
+    padding:0px;
+    font-size:13px;
+    
+}
+.p span{
+    background-color:#F5EBE0;
+    font-size:13px;
+}
+.chart {
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width:100%;
+    overflow:scroll;
+    margin-bottom: 20px;
+}
+redtag{
+    color:red;
+    margin-top:1px;
+    font-size:13px;
+    font-family: 'Kanit', sans-serif;
+}
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100vh;
+    background-color: black;
+    transition: width 0.3s ease;
+    color:black;
+    overflow: hidden;
+}
+
+.icon::before {
+    content: "\2630"; /* Hamburger icon */
+}
+
+.icon.open::before {
+    content: "\2716"; /* Close icon */
+}
+
+.icon {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    color:white;
+    cursor: pointer;
+}
+
+#navbarList {
+    margin-top: 50px;
+    padding: 0;
+    list-style-type: none;
+}
+
+#navbarList li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+#navbarList li a {
+    text-decoration: none;
+    color:white;
+}
+#code {
+font-size: 12px;
+}
+
+@media(min-width:700px){
+.p{
+  font-size:18px;
+}
+redtag{
+  font-size:17px;
+  color:red;
+}
+h4{
+  font-size:8px;
+}
+.p span{
+  font-size:17px;
+}
+.container h4{
+    padding:5px;
+    font-size: 22px;
+}
+.section{
+  font-size:18px;
+}
+}
+.section {
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align:center;
+}
+
+.btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
