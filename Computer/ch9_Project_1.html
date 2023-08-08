@@ -1,0 +1,714 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ask Computer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&family=Ubuntu:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Ubuntu', sans-serif;
+        }
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100vh;
+    background-color: #f2f2f2;
+    transition: width 0.3s ease;
+    overflow: hidden;
+  }
+
+  .icon::before {
+    content: "\2630"; /* Hamburger icon */
+  }
+
+  .icon.open::before {
+    content: "\2716"; /* Close icon */
+  }
+
+  .icon {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  #navbarList {
+    margin-top: 50px;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  #navbarList li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  #navbarList li a {
+    text-decoration: none;
+    color: #333;
+  }
+
+  .open {
+    width: 300px;
+  }
+        .faq-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .search-container {
+            margin-bottom: 30px;
+           /* position: sticky;*/
+            top: 0;
+            background-color: #fff;
+            z-index: 999;
+        }
+
+        .search-container input[type=text] {
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .faq-item {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 10px;
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .faq-answer {
+            padding: 10px;
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #666;
+        }
+         .faq-answer code {
+            font-size: 14px;
+        }
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .container h1 {
+            font-size: 30px;
+            margin-bottom: 2px;
+            width: 100%;
+            text-align: center;
+            text-shadow: 2px 2px 4px black;
+        }
+
+        @media screen and (max-width: 768px) {
+            .faq-section {
+                padding: 30px 10px;
+            }
+
+            .faq-question {
+                font-size: 13px;
+            }
+
+            .faq-answer {
+                font-size: 12px;
+            }
+        }
+
+        pre {
+            background-color: white !important;
+            color: white;
+            padding: 4px;
+            width: 100%;
+            overflow: scroll;
+            border-radius: 5px;
+           
+        }
+
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <div class="icon" onclick="toggleNavbar()"></div>
+    <ul id="navbarList">
+      <li><a href="index.html">Chapter 1 - Starting with Python</a></li>
+      <li><a href="computer_ch2.html">Chapter 2 - If-else and loops</a></li>
+      <li><a href="computer_ch3.html">Chapter 3 - String Manipulation</a></li>
+      <li><a href="computer_ch4.html">Chapter 4  - List Manipulation</a></li>
+      <li><a href="Touples.html">Chapter 5 - Touples</a></li>
+      <li><a href="dictionaries_ch6.html">Chapter 6 - Dictionaries</a></li>
+      <li><a href="functions_ch7.html">Chapter 7 - Functions</a></li>
+      <li><a href="lib_ch8.html">Chapter 8 - Working with Libraries</a></li>
+      <li><a href="ch9_Project_1.html">Chapter 9 - Project I</a></li>
+      <li><a href="ch_10_flask.html">Chapter 10 - Flask</a></li>
+    </ul>
+  </div>
+
+    <script>
+    function toggleNavbar() {
+      var navbar = document.querySelector('.navbar');
+      navbar.classList.toggle('open');
+
+      var icon = document.querySelector('.icon');
+      icon.classList.toggle('open');
+      
+      
+    }
+  </script>
+<div class="container">
+    <h1>Python</h1>
+</div>
+<section class="faq-section">
+    <div class="search-container">
+        <input type="text" placeholder="Search for a question...">
+    </div>
+    <div class="faq-list">
+   <div class="faq-item">
+      <h3 class="faq-question">
+           Project 1 - Wish Me
+</h3>
+      <div class="faq-answer">
+           This code uses the datetime module to get the current time. Then, it compares the hour component of the current time to determine whether it is morning (before 12), afternoon (between 12 and 18), or evening (after 18). Finally, it prints the appropriate greeting based on the time.
+           <pre onclick="copyText(this)"><code class="language-python" id="code">import datetime
+
+current_time = datetime.datetime.now().time()
+
+if current_time.hour < 12:
+    print("Good Morning!")
+elif 12 <= current_time.hour < 18:
+    print("Good Afternoon!")
+else:
+    print("Good Evening!")
+</code></pre>
+      </div>
+    </div>
+    <div class="faq-item">
+      <h3 class="faq-question">
+           Project 2 - Check Email
+</h3>
+      <div class="faq-answer">
+           In this code, we define the is_valid_email function that uses a regular expression pattern to check if an email is valid. The validate_emails function iterates over the dictionary items, checks each email using the is_valid_email function, and prints whether it is valid or invalid along with the corresponding name.
+           <pre onclick="copyText(this)"><code class="language-python" id="code">import re
+
+def is_valid_email(email):
+    # Regular expression pattern to validate email format
+    pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+    return re.match(pattern, email)
+
+def validate_emails(dictionary):
+    for name, email in dictionary.items():
+        if is_valid_email(email):
+            print(f"Valid email found for {name}: {email}")
+        else:
+            print(f"Invalid email found for {name}: {email}")
+
+# Example dictionary with names and emails
+email_dict = {
+    "John": "john@example.com",
+    "Emma": "emma.example.com",
+    "Michael": "michael@example.com",
+    "Sophia": "sophia@example.com"
+}
+
+# Validate the emails in the dictionary
+validate_emails(email_dict)
+</code></pre>
+      </div>
+    </div>
+    <div class="faq-item">
+      <h3 class="faq-question">
+           Project 3 - Number Guessing Game
+</h3>
+      <div class="faq-answer">
+           In this game, the program generates a random number between 1 and 100 using the random.randint() function. The player has to guess the number, and the program provides feedback if the guess is too low or too high. It keeps track of the number of attempts until the correct number is guessed. Once the correct number is guessed, it displays a congratulatory message along with the number of attempts.
+           <pre onclick="copyText(this)"><code class="language-python" id="code">import random
+
+def number_guessing_game():
+    secret_number = random.randint(1, 100)
+    attempts = 0
+
+    print("Welcome to the Number Guessing Game!")
+    print("I have chosen a number between 1 and 100. Can you guess it?")
+
+    while True:
+        guess = int(input("Enter your guess: "))
+        attempts += 1
+
+        if guess == secret_number:
+            print(f"Congratulations! You guessed the correct number in {attempts} attempts.")
+            break
+        elif guess < secret_number:
+            print("Too low. Try again.")
+        else:
+            print("Too high. Try again.")
+
+    print("Thank you for playing!")
+
+# Run the game
+number_guessing_game()
+</code></pre>
+      </div>
+    </div>
+    <div class="faq-item">
+      <h3 class="faq-question">
+           Project 4 - To-Do List Application
+</h3>
+      <div class="faq-answer">
+           In this code, the To-Do List Application allows the user to add tasks, remove tasks, and view the tasks in the to-do list. It uses a simple while loop to display a menu and prompts the user for their choice. Based on the selected option, the corresponding function is called to perform the desired operation.
+           <pre onclick="copyText(this)"><code class="language-python" id="code"># To-Do List Application
+
+# Empty to-do list
+todo_list = []
+
+# Function to add a task to the to-do list
+def add_task(task):
+    todo_list.append(task)
+    print("Task added successfully.")
+
+# Function to remove a task from the to-do list
+def remove_task(task):
+    if task in todo_list:
+        todo_list.remove(task)
+        print("Task removed successfully.")
+    else:
+        print("Task not found.")
+
+# Function to view all tasks in the to-do list
+def view_tasks():
+    if todo_list:
+        print("Tasks:")
+        for task in todo_list:
+            print("- " + task)
+    else:
+        print("No tasks in the to-do list.")
+
+# Main program loop
+while True:
+    print("\n==== To-Do List Application ====")
+    print("1. Add Task")
+    print("2. Remove Task")
+    print("3. View Tasks")
+    print("4. Exit")
+
+    choice = input("Enter your choice (1-4): ")
+
+    if choice == "1":
+        task = input("Enter the task: ")
+        add_task(task)
+    elif choice == "2":
+        task = input("Enter the task to remove: ")
+        remove_task(task)
+    elif choice == "3":
+        view_tasks()
+    elif choice == "4":
+        print("Exiting the program.")
+        break
+    else:
+        print("Invalid choice. Please try again.")
+</code></pre>
+      </div>
+    </div>
+    <div class="faq-item">
+      <h3 class="faq-question">
+           Project 5 - Calculator
+</h3>
+      <div class="faq-answer">
+  This code defines four functions for addition, subtraction, multiplication, and division. It then presents a menu to the user, allowing them to select an operation. The program takes input for two numbers and performs the chosen operation accordingly. The user can continue performing calculations or choose to exit the calculator.
+           <pre onclick="copyText(this)"><code class="language-python" id="code">def add(num1, num2):
+    return num1 + num2
+
+def subtract(num1, num2):
+    return num1 - num2
+
+def multiply(num1, num2):
+    return num1 * num2
+
+def divide(num1, num2):
+    if num2 != 0:
+        return num1 / num2
+    else:
+        return "Error: Cannot divide by zero."
+
+print("Welcome to the Calculator!")
+
+while True:
+    print("\nSelect operation:")
+    print("1. Addition")
+    print("2. Subtraction")
+    print("3. Multiplication")
+    print("4. Division")
+    print("5. Exit")
+
+    choice = input("Enter your choice (1-5): ")
+
+    if choice == '5':
+        print("Exiting the Calculator. Goodbye!")
+        break
+
+    num1 = float(input("Enter the first number: "))
+    num2 = float(input("Enter the second number: "))
+
+    if choice == '1':
+        result = add(num1, num2)
+        print("Result:", result)
+    elif choice == '2':
+        result = subtract(num1, num2)
+        print("Result:", result)
+    elif choice == '3':
+        result = multiply(num1, num2)
+        print("Result:", result)
+    elif choice == '4':
+        result = divide(num1, num2)
+        print("Result:", result)
+    else:
+        print("Invalid input. Please try again.")
+</code></pre>
+      </div>
+    </div>
+    <div class="faq-item">
+      <h3 class="faq-question">
+           Project 6 - Dice Rolling Simulator
+</h3>
+      <div class="faq-answer">
+           In this code, the roll_dice() function generates a random number between 1 and 6, simulating the roll of a dice. The play_again() function prompts the user to play again or quit. The main() function is the entry point of the program, where the dice rolling simulation takes place.
+<br><br>
+When you run the code, it will ask you to press Enter to roll the dice. After rolling the dice, it will display the result. Then, it will ask if you want to roll the dice again. If you choose to continue, it will roll the dice again; otherwise, it will exit the program.
+           <pre onclick="copyText(this)"><code class="language-python" id="code">import random
+
+def roll_dice():
+    min_value = 1
+    max_value = 6
+    return random.randint(min_value, max_value)
+
+def play_again():
+    while True:
+        choice = input("Do you want to roll the dice again? (y/n): ")
+        if choice.lower() == 'y':
+            return True
+        elif choice.lower() == 'n':
+            return False
+        else:
+            print("Invalid choice. Please enter 'y' or 'n'.")
+
+def main():
+    print("Welcome to the Dice Rolling Simulator!")
+
+    while True:
+        input("Press Enter to roll the dice...")
+        dice_value = roll_dice()
+        print("The dice rolled and you got:", dice_value)
+
+        if not play_again():
+            break
+
+    print("Thank you for playing!")
+
+if __name__ == '__main__':
+    main()
+</code></pre>
+      </div>
+    </div>
+    <div class="faq-item">
+      <h3 class="faq-question">
+           Project 7 - Hangman Game
+</h3>
+      <div class="faq-answer">
+           This code randomly selects a word from a list and allows the player to guess letters until they either guess the word correctly or run out of attempts. The hangman ASCII art is displayed based on the number of incorrect guesses.
+           <pre onclick="copyText(this)"><code class="language-python" id="code">import random
+
+def hangman():
+    word_list = ['apple', 'banana', 'orange', 'strawberry', 'watermelon']
+    word = random.choice(word_list)
+    guesses = ''
+    attempts = 6
+
+    print("Let's play Hangman!")
+    print("_ " * len(word))
+
+    while attempts > 0:
+        guess = input("Guess a letter: ").lower()
+
+        if len(guess) != 1:
+            print("Please enter a single letter.")
+            continue
+
+        if guess in guesses:
+            print("You have already guessed that letter. Try again.")
+            continue
+
+        guesses += guess
+
+        if guess not in word:
+            attempts -= 1
+            print("Wrong guess! Attempts left:", attempts)
+            print_hangman(attempts)
+        else:
+            print("Correct guess!")
+
+        word_progress = get_word_progress(word, guesses)
+        print(word_progress)
+
+        if word_progress == word:
+            print("Congratulations! You won!")
+            break
+
+    if attempts == 0:
+        print("Game over! You ran out of attempts. The word was:", word)
+
+def print_hangman(attempts):
+    stages = [
+        """
+           --------
+           |      |
+           |      O
+           |     \\|/
+           |      |
+           |     / \\
+           -
+        """,
+        """
+           --------
+           |      |
+           |      O
+           |     \\|/
+           |      |
+           |     /
+           -
+        """,
+        """
+           --------
+           |      |
+           |      O
+           |     \\|/
+           |      |
+           |
+           -
+        """,
+        """
+           --------
+           |      |
+           |      O
+           |     \\|
+           |      |
+           |
+           -
+        """,
+        """
+           --------
+           |      |
+           |      O
+           |      |
+           |      |
+           |
+           -
+        """,
+        """
+           --------
+           |      |
+           |      O
+           |
+           |
+           |
+           -
+        """,
+        """
+           --------
+           |      |
+           |
+           |
+           |
+           |
+           -
+        """
+    ]
+    print(stages[6 - attempts])
+
+def get_word_progress(word, guesses):
+    progress = ''
+    for letter in word:
+        if letter in guesses:
+            progress += letter + ' '
+        else:
+            progress += '_ '
+    return progress.strip()
+
+hangman()
+</code></pre>
+      </div>
+    </div>
+    <div class="faq-item">
+      <h3 class="faq-question">
+           Project 8 - Password Generator
+</h3>
+      <div class="faq-answer">
+           In this code, the generate_password function takes an optional parameter length (default value is 8) that specifies the length of the password. The function generates a password by randomly selecting characters from a combination of uppercase letters, lowercase letters, digits, and punctuation marks.
+           <pre onclick="copyText(this)"><code class="language-python" id="code">import random
+import string
+
+def generate_password(length=8):
+    characters = string.ascii_letters + string.digits + string.punctuation
+    password = ''.join(random.choice(characters) for _ in range(length))
+    return password
+
+# Example usage
+password = generate_password()
+print("Generated Password:", password)
+</code></pre>
+      </div>
+    </div>
+        <div class="faq-item">
+      <h3 class="faq-question">
+           Project 9 - Quiz Game
+</h3>
+      <div class="faq-answer">
+           In this example, the Question class represents a single quiz question with its choices and correct answer. The Quiz class manages the flow of the quiz, keeps track of the score, and interacts with the user. You can modify the questions, choices, and answers in the questions list to customize the quiz according to your preferences.
+           <pre onclick="copyText(this)"><code class="language-python" id="code">class Question:
+    def __init__(self, question, choices, answer):
+        self.question = question
+        self.choices = choices
+        self.answer = answer
+
+    def check_answer(self, user_answer):
+        return user_answer.lower() == self.answer.lower()
+
+
+class Quiz:
+    def __init__(self, questions):
+        self.questions = questions
+        self.score = 0
+        self.current_question_index = 0
+
+    def get_current_question(self):
+        return self.questions[self.current_question_index]
+
+    def display_question(self):
+        question = self.get_current_question()
+        print(question.question)
+        for index, choice in enumerate(question.choices):
+            print(f"{index + 1}. {choice}")
+
+    def get_user_answer(self):
+        while True:
+            try:
+                user_input = int(input("Enter your answer (1-4): "))
+                if 1 <= user_input <= 4:
+                    return user_input
+                else:
+                    print("Invalid input. Please enter a number between 1 and 4.")
+            except ValueError:
+                print("Invalid input. Please enter a number.")
+
+    def check_user_answer(self, user_answer):
+        question = self.get_current_question()
+        if question.check_answer(user_answer):
+            self.score += 1
+            print("Correct answer!\n")
+        else:
+            print("Wrong answer!\n")
+        self.current_question_index += 1
+
+    def display_score(self):
+        total_questions = len(self.questions)
+        print(f"You scored {self.score} out of {total_questions}.\n")
+
+    def start_quiz(self):
+        print("Welcome to the Quiz Game!\n")
+        while self.current_question_index < len(self.questions):
+            self.display_question()
+            user_answer = self.get_user_answer()
+            self.check_user_answer(user_answer)
+        self.display_score()
+
+
+# Define your quiz questions
+questions = [
+    Question("What is the capital of France?", ["London", "Paris", "Madrid", "Rome"], "Paris"),
+    Question("Which planet is known as the Red Planet?", ["Mars", "Venus", "Jupiter", "Mercury"], "Mars"),
+    Question("Who painted the Mona Lisa?", ["Pablo Picasso", "Leonardo da Vinci", "Vincent van Gogh", "Michelangelo"],
+             "Leonardo da Vinci"),
+    Question("What is the largest ocean in the world?", ["Atlantic Ocean", "Arctic Ocean", "Indian Ocean", "Pacific Ocean"],
+             "Pacific Ocean"),
+]
+
+# Create a new quiz instance and start the quiz
+quiz = Quiz(questions)
+quiz.start_quiz()
+</code></pre>
+      </div>
+    </div>
+        
+        <div class="faq-item">
+      <h3 class="faq-question">
+           Project 10 - Weather
+</h3>
+      <div class="faq-answer">
+          Go to this - <a href="https://drive.google.com/file/d/164WCTGHJNkuqvpvM0AgI6ygcuT0txsof/view?usp=drivesdk">https://drive.google.com/file/d/164WCTGHJNkuqvpvM0AgI6ygcuT0txsof/view?usp=drivesdk</a>
+           <pre onclick="copyText(this)"><code class="language-python" id="code"></code></pre>
+      </div>
+    </div>
+        
+        
+    </div>
+</section>
+
+<script>
+    const searchInput = document.querySelector('.search-container input');
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    searchInput.addEventListener('keyup', function() {
+        const searchTerm = searchInput.value.toLowerCase();
+        faqItems.forEach(function(item) {
+            const question = item.querySelector('.faq-question').textContent.toLowerCase();
+            if (question.includes(searchTerm)) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
+<script>
+    Prism.highlightAll();
+</script>
+<script>
+        function copyText(element) {
+            var text = element.textContent;
+
+            navigator.clipboard.writeText(text)
+                .then(function() {
+                    alert("Text copied to clipboard!");
+                })
+                .catch(function(error) {
+                    console.error("Failed to copy text: ", error);
+                });
+        }
+    </script>
+
+</body>
+</html>
